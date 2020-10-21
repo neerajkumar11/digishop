@@ -1,1 +1,7 @@
+main {
+  min-height: 80vh;
+}
 
+.star {
+  margin: 0.1rem;
+}
