@@ -21,7 +21,7 @@ const Product = (props) => {
                   <Rating rating={props.product.rating} ratingNum={props.product.numReviews}/>
                 </div>
               </Card.Text>
-              <Card.Text as='h3'>${props.product.price}</Card.Text>
+              <Card.Text as='h3'>₹{props.product.price}</Card.Text>
             </Card.Body>
           </Card>  
         </>
