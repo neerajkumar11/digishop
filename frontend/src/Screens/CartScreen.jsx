@@ -15,6 +15,10 @@ const CartScreen = ({match, location, history}) => {
     const cart = useSelector(state => state.cart);
     const { cartItems} = cart;
 
+    const addDecimal = (num) => {
+        return (Math.round(num * 100) / 100).toFixed(2);
+    }
+
     useEffect(() => {
         if(productId){
             dispatch(addToCart(productId, qty))
@@ -26,7 +30,7 @@ const CartScreen = ({match, location, history}) => {
     }
 
     const checkoutHandler = () => {
-        history.push('/login/redirect=shipping');
+        history.push('/login?redirect=shipping');
     }
 
     return (
@@ -92,7 +96,7 @@ const CartScreen = ({match, location, history}) => {
                                     <h5>SubTotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h5>
                                 </Col>
                                 <Col xs={3} md={5} className='pl-0'>
-                                    ₹{cartItems.reduce((acc, item) => acc+ (item.qty * item.price), 0)}
+                                    ₹{addDecimal(cartItems.reduce((acc, item) => acc+ (item.qty * item.price), 0))}
                                 </Col>
                             </Row>
                         </ListGroup.Item>
@@ -102,7 +106,7 @@ const CartScreen = ({match, location, history}) => {
                                     <h5>Shipping Cost</h5>
                                 </Col>
                                 <Col xs={3} md={5} className='pl-0'>
-                                    ₹240
+                                    120.00
                                 </Col>
                             </Row>
                         </ListGroup.Item>
@@ -112,7 +116,7 @@ const CartScreen = ({match, location, history}) => {
                                     <h5>Total Price</h5>
                                 </Col>
                                 <Col xs={3} md={5} className='pl-0'>
-                                    ₹{cartItems.reduce((acc, item) => acc+ (item.qty * item.price), 0) + 240}
+                                    ₹{addDecimal(cartItems.reduce((acc, item) => acc+ (item.qty * item.price), 0) + 240.00)}
                                 </Col>
                             </Row>
                         </ListGroup.Item>
